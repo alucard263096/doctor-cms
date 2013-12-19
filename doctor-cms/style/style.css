@@ -1,0 +1,131 @@
+BODY {
+	BACKGROUND: #fff; TEXT-ALIGN: center
+}
+BODY {
+	FONT: 12px/1.5em Helvetica, Arial, sans-serif; COLOR: #000
+}
+TD {
+	FONT: 12px/1.5em Helvetica, Arial, sans-serif; COLOR: #000; 
+}
+INPUT {
+	FONT: 12px/1.5em Helvetica, Arial, sans-serif; COLOR: #000
+}
+TEXTAREA {
+	FONT: 12px/1.5em Helvetica, Arial, sans-serif; COLOR: #000
+}
+SELECT {
+	FONT: 12px/1.5em Helvetica, Arial, sans-serif; COLOR: #000
+}
+BUTTON {
+	FONT: 12px/1.5em Helvetica, Arial, sans-serif; COLOR: #000
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H4 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H5 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H6 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FORM {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FIELDSET {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H1 {
+	FONT-SIZE: 1em
+}
+H2 {
+	FONT-SIZE: 1em
+}
+H3 {
+	FONT-SIZE: 1em
+}
+H4 {
+	FONT-SIZE: 1em
+}
+H5 {
+	FONT-SIZE: 1em
+}
+H6 {
+	FONT-SIZE: 1em
+}
+A {
+	COLOR: #000; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A IMG {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+Left_tableheader
+{
+	text-align:left;
+}
+#header {
+	OVERFLOW: hidden; WIDTH: 100%
+}
+#header H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+#footer {
+	PADDING-RIGHT: 0px; BORDER-TOP: #9db3c5 1px solid; PADDING-LEFT: 0px; BACKGROUND: #e8f3fd; PADDING-BOTTOM: 12px; COLOR: #666; PADDING-TOP: 12px
+}
+#footlinks {
+	MARGIN-TOP: -3px; FLOAT: right; TEXT-ALIGN: right
+}
+#footer IMG {
+	FLOAT: left; MARGIN: 0px 10px 0px 0px
+}
+#copyright {
+	FONT: 12px/1.5em Verdana, Arial, Helvetica, sans-serif
+}
+#debuginfo {
+	FONT: 12px/1.5em Verdana, Arial, Helvetica, sans-serif
+}
+#copyright STRONG {
+	FONT-WEIGHT: bold
+}
+#copyright EM {
+	FONT-WEIGHT: bold
+}
+#copyright STRONG A {
+	COLOR: #0954a6
+}
+#copyright EM {
+	COLOR: #ff9d25
+}
+.Copy {
+	FONT-SIZE: 11px; COLOR: #333333; LINE-HEIGHT: 15px; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"
+}
+.boxHead {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #666666; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"
+}
+.title{ FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #666666; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"}
