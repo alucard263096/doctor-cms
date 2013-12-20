@@ -1,26 +1,22 @@
-using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
+ï»¿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using SunStar_CMS.admin.Classes.ControlValues;
-using SunStar_CMS.admin.Classes.Mgr;
-using SunStar_CMS.admin.Classes.Objects;
 using SunStar_CMS.admin.Classes.Utils;
+using SunStar_CMS.admin.Classes.ControlValues;
+using SunStar_CMS.admin.Classes.Objects;
+using System.Data;
+using SunStar_CMS.admin.Classes.Mgr;
+using System.Collections;
 
-namespace SunStar_CMS.admin
+namespace doctor_cms
 {
-    public partial class type_list : System.Web.UI.Page
+    public partial class event_list : System.Web.UI.Page
     {
         public const int GET_BY_CRITERIA = 1;
         protected int? functionType;
-
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +25,7 @@ namespace SunStar_CMS.admin
 
             if (functionType == null)
             {
-                Session["message"] = (new Message()).getMessage("Error", "¶Ô²»Æð£¬ÄãÃ»ÓÐÈ¨ÏÞ");
+                Session["message"] = (new Message()).getMessage("Error", "å¯¹ä¸èµ·ï¼Œä½ æ²¡æœ‰æƒé™");
                 Response.Redirect("home.aspx");
             }
             if (!Page.IsPostBack)
@@ -41,7 +37,7 @@ namespace SunStar_CMS.admin
                     ddlStatus.Items.Add(new ListItem((string)statusMap[Enum.Parse(typeof(RecordStatusEnum), status)].DisplayValue, Convert.ToString((int)statusMap[Enum.Parse(typeof(RecordStatusEnum), status)].DbValue)));
                 }
 
-                btnDelete.Attributes.Add("onclick", "Javascript:return confirm('ÊÇ·ñÈ·¶¨É¾³ý?')");
+                //btnDelete.Attributes.Add("onclick", "Javascript:return confirm('æ˜¯å¦ç¡®å®šåˆ é™¤?')");
                 setResult(GET_BY_CRITERIA);
             }
             else
@@ -50,49 +46,48 @@ namespace SunStar_CMS.admin
             }
         }
 
+        protected void resetResult()
+        {
+            SetUcResultHeader();
+
+            object[] array = (new EventMgr()).getEventList((string)ViewState["sql"]);
+            ucResult.pDataSet = (DataSet)array[0];
+            ucResult.BindData();
+        }
+
         void SetUcResultHeader()
         {
-            ucResult.pHeader = "ID,ÖÐÎÄÃû³Æ,Ó¢ÎÄÃû³Æ,×´Ì¬";
-            ucResult.pDBField = "type_id,chn_name,eng_name,status";
+            ucResult.pHeader = "ID,æ ‡é¢˜,ç®€ä»‹,å‘å¸ƒæ—¥æœŸ,çŠ¶æ€";
+            ucResult.pDBField = "eventId,title,summary,publishedDate,status";
             ucResult.pDisplayType = Convert.ToString((int)DisplayFormatEnum.CenterAlignedString) + "," +
                                     Convert.ToString((int)DisplayFormatEnum.LeftAlignedString) + "," +
                                     Convert.ToString((int)DisplayFormatEnum.LeftAlignedString) + "," +
                                     Convert.ToString((int)DisplayFormatEnum.LeftAlignedString) + "," +
                                     Convert.ToString((int)DisplayFormatEnum.LeftAlignedString) + "," +
                                     Convert.ToString((int)DisplayFormatEnum.LeftAlignedString);
-            ucResult.pDetailURL = "type_detail.aspx?id=";
+            ucResult.pDetailURL = "event_detail.aspx?id=";
             ucResult.pHyperLinkType = Convert.ToString((int)ListingHyperlinkTypeEnum.URL);
             ucResult.pHyperLinkCol = "1";
-            ucResult.pSortingField = "type_id,chn_name,eng_name,status";
+            ucResult.pSortingField = "eventId,title,summary,publishedDate,status";
         }
-
-        protected void resetResult()
-        {
-            SetUcResultHeader();
-
-            object[] array = (new TypeMgr()).getTypeList((string)ViewState["sql"]);
-            ucResult.pDataSet = (DataSet)array[0];
-            ucResult.BindData();
-        }
-
         private void setResult(int value)
         {
 
             DataSet set = new DataSet();
             object[] array = new object[2];
-            TypeMgr Mgr = new TypeMgr();
+            EventMgr Mgr = new EventMgr();
 
             if (Session["search_from_session"] != null && Session["search_to_session"] != null)
             {
-                if (Session["search_from_session"].ToString() == "type" && Session["search_from_session"].ToString() == Session["search_to_session"].ToString())
+                if (Session["search_from_session"].ToString() == "event" && Session["search_from_session"].ToString() == Session["search_to_session"].ToString())
                 {
                     if (Session["search_hashtable"] != null)
                     {
                         Session["search_from_session"] = "";
                         Hashtable htSessionCriteria = (Hashtable)Session["search_hashtable"];
                         
-                        txtEngName.Text = htSessionCriteria["SearchEngName"].ToString();
-                        txtChnName.Text = htSessionCriteria["SearchChnName"].ToString();
+                        txtTitle.Text = htSessionCriteria["SearchTitle"].ToString();
+                        txtContent.Text = htSessionCriteria["SearchContent"].ToString();
                         ddlStatus.SelectedValue = htSessionCriteria["SearchStatus"].ToString();
 
                     }
@@ -105,22 +100,22 @@ namespace SunStar_CMS.admin
                     set = userMgr.getUserList((User)Session["user"], null, null, null, null);
                     break;*/
                 case GET_BY_CRITERIA:
-                    array = Mgr.getTypeList((User)Session["user"],
-                        (txtEngName.Text == "") ? null : txtEngName.Text,
-                        (txtChnName.Text == "") ? null : txtChnName.Text,
-                        (string)ddlStatus.SelectedItem.Value);
+                    array = Mgr.getEventList((User)Session["user"],
+                        (txtTitle.Text == "") ? null : txtTitle.Text,
+                        (txtContent.Text == "") ? null : txtContent.Text,
+                        Convert.ToInt32(ddlStatus.SelectedItem.Value));
 
                     Hashtable htCriteria = new Hashtable();
-                    htCriteria.Add("SearchEngName", txtEngName.Text);
-                    htCriteria.Add("SearchChnName", txtChnName.Text);
+                    htCriteria.Add("SearchTitle", txtTitle.Text);
+                    htCriteria.Add("SearchContent", txtContent.Text);
                     htCriteria.Add("SearchStatus", ddlStatus.SelectedValue);
                     Session["search_hashtable"] = htCriteria;
                     Session["search_from_session"] = "";
-                    Session["search_to_session"] = "type";
+                    Session["search_to_session"] = "event";
 
                     break;
                 default:
-                    ((Label)Master.FindControl("lblWarning")).Text = "³öÏÖ´íÎó,ÇëÖØÐÂ³¢ÊÔ";
+                    ((Label)Master.FindControl("lblWarning")).Text = "å‡ºçŽ°é”™è¯¯,è¯·é‡æ–°å°è¯•";
                     break;
             }
 
@@ -141,26 +136,9 @@ namespace SunStar_CMS.admin
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("type_detail.aspx", true);
-
+            Response.Redirect("event_detail.aspx", true);
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (ucResult.checkedList.ToString().Trim().Length > 0)
-            {
-                TypeMgr Mgr = new TypeMgr();
-                Message message = new Message();
-                DataSet set = (DataSet)Mgr.getTypeList((User)Session["user"], null, null, null)[0];
-                ArrayList result = Mgr.deleteType(ucResult.checkedList);
 
-                if (result.Count == 0)
-                {
-                    Master.lblWarning.Text = message.getMessage("Information", "Type are deleted");
-                }
-
-                setResult(GET_BY_CRITERIA);
-            }
-        }
     }
 }

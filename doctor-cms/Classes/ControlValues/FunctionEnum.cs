@@ -26,22 +26,14 @@ namespace SunStar_CMS.admin.Classes.ControlValues
 
         public enum FunctionGroup
         {
-            [EnumValue(1, "类型管理")]
-            TypeMaintenance = 1,
-            [EnumValue(2, "类别管理")]
-            CategoryMaintenance = 2,
-            [EnumValue(3, "参数管理")]
-            FactorMaintenance = 3,
-            [EnumValue(4, "产品管理")]
-            ProductMaintenance = 4,
-            [EnumValue(5, "会员管理")]
-            CustomerMaintenance = 5,
+            [EnumValue(1, "活动管理")]
+            EventMaintenance = 1,
+            [EnumValue(2, "医生管理")]
+            DoctorMaintenance = 2,
+            [EnumValue(3, "会员管理")]
+            MemberMaintenance = 3,
             [EnumValue(6, "用户管理")]
-            UserMaintenance = 6,
-            [EnumValue(7, "新闻管理")]
-            NewsMaintenance = 7,
-            [EnumValue(8, "留言问题管理")]
-            QuestionMaintenance = 8
+            UserMaintenance = 6
         }
 
 
