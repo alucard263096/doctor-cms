@@ -13,6 +13,7 @@ using SunStar_CMS.admin.Classes.Utils;
 using System.Data.Common;
 using SunStar_CMS.admin.Classes.ControlValues;
 using doctor_cms.Classes.Objects;
+using System.Collections.Generic;
 
 namespace SunStar_CMS.admin.Classes.Mgr
 {
@@ -52,6 +53,32 @@ namespace SunStar_CMS.admin.Classes.Mgr
             }
 
 
+        }
+
+        public List<Event> getEventListByUpdateDate(string latest_update_date)
+        {
+            List<Event> lstEvent = new List<Event>();
+            string sql = "select * from tb_event where updated_date>'" + latest_update_date.Replace('\'', '"') + "'";
+            DataTable dt = null;
+            using (DBUtil util = new DBUtil())
+            {
+                dt = util.getDataSet(sql, "tb_event").Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    Event e = new Event()
+                    {
+                        EventId = Convert.ToInt32(dr["eventId"]),
+                        Summary = Convert.ToString(dr["summary"]),
+                        Content = Convert.ToString(dr["content"]),
+                        ImageUrl = Convert.ToString(dr["imageUrl"]),
+                        PublishedDate = Convert.ToDateTime(dr["publishedDate"]),
+                        Status = Convert.ToInt32(dr["status"]),
+                        Title = Convert.ToString(dr["title"])
+                    };
+                    lstEvent.Add(e);
+                }
+            }
+            return lstEvent;
         }
 
        
@@ -101,7 +128,7 @@ namespace SunStar_CMS.admin.Classes.Mgr
 
         }
 
-        internal int addType(User user, Event e)
+        internal int addEvent(User user, Event e)
         {
             using (DBUtil util = new DBUtil())
             {
@@ -116,11 +143,11 @@ values (@eventId,@title,@summary,@imageUrl,@publishedDate,@content,@status,@user
             }
         }
 
-        internal void editType(User user, Event e)
+        internal void editEvent(User user, Event e)
         {
             using (DBUtil util = new DBUtil())
             {
-                string sql= @" update tb_type set 
+                string sql = @" update tb_event set 
 title=@title,
 summary=@summary,
 imageUrl=@imageUrl,

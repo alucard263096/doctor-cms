@@ -34,7 +34,7 @@ namespace SunStar_CMS.admin.Classes.Utils
             string DBServer = ConfigurationManager.AppSettings["DB_server"];
             string provider = "System.Data.SqlClient";
 
-            string connectionString = @"Data Source=.\sqlexpress;Initial Catalog=Doctor;Integrated Security=True";
+            string connectionString = @"Data Source=WIN-V85DRKNSGGD;Initial Catalog=Doctor;User ID=doctor;Password=doctor";
 
             _factory = DbProviderFactories.GetFactory(provider);
             _connection = _factory.CreateConnection();
