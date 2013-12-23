@@ -21,8 +21,8 @@ namespace SunStar_CMS.admin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            functionType = Master.checkPermission((int)EnumConvertUtils.ToDbValue(FunctionEnum.FunctionGroup.TypeMaintenance));
-            Master.PageTitle.Text = EnumConvertUtils.ToDisplayValue(FunctionEnum.FunctionGroup.TypeMaintenance) + " - Sunstar CMS";
+            functionType = Master.checkPermission((int)EnumConvertUtils.ToDbValue(FunctionEnum.FunctionGroup.EventMaintenance));
+            Master.PageTitle.Text = EnumConvertUtils.ToDisplayValue(FunctionEnum.FunctionGroup.EventMaintenance) + " - Sunstar CMS";
             if (functionType == null)
             {
                 Session["message"] = (new Message()).getMessage("Error", "对不起，你没有权限");
